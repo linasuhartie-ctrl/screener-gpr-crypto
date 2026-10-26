@@ -8,6 +8,17 @@ st.set_page_config(
 
 st.title("🚀 Crypto Futures Scanner")
 
-st.success("Aplikasi berhasil berjalan!")
+st.success("Streamlit berhasil!")
 
 st.write("CCXT version:", ccxt.__version__)
+
+exchange = ccxt.binance({
+    "enableRateLimit": True,
+    "options": {
+        "defaultType": "future"
+    }
+})
+
+markets = exchange.load_markets()
+
+st.success(f"Binance berhasil terhubung: {len(markets)} market")
